@@ -1,0 +1,6 @@
+flask
+flask-cors
+tensorflow-cpu>=2.16.0
+keras>=3.5.0
+opencv-python-headless
+numpy<2.0.0
