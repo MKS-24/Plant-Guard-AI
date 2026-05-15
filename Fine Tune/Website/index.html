@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-Powered Plant Disease Classification System with Real-time Analysis">
+    <title>PlantGuard AI - Disease Classification System</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+<body>
+    
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <i class="fas fa-leaf brand-icon"></i>
+                    <span class="brand-name">PlantGuard<span class="ai-tag">AI</span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#classifier" class="nav-link">Classifier</a></li>
+                    <li><a href="#results" class="nav-link">Results</a></li>
+                    <li><a href="#models" class="nav-link">Models</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="badge">
+                    <i class="fas fa-brain"></i>
+                    <span>Powered by Deep Learning</span>
+                </div>
+                <h1 class="hero-title">
+                    Automated Plant Disease
+                    <span class="gradient-text">Classification System</span>
+                </h1>
+                <p class="hero-description">
+                    Advanced CNN-based disease detection across 15 disease classes. 
+                    Upload leaf images for instant AI-powered diagnosis with confidence scores and visual analysis.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Disease Classes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">91.8%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">&lt;2s</div>
+                        <div class="stat-label">Analysis Time</div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#classifier" class="btn btn-primary">
+                        <i class="fas fa-upload"></i>
+                        Start Classification
+                    </a>
+                    <a href="#models" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i>
+                        View Model Performance
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="leaf-animation">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="scan-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES SECTION ========== -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Advanced Features</h2>
+                <p class="section-subtitle">Complete disease classification pipeline with visualization</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Filter Visualization</h3>
+                    <p>Sobel & Laplacian filters to analyze leaf texture patterns and disease signatures</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>CNN From Scratch</h3>
+                    <p>Custom 3-block CNN with BatchNorm, Dropout, and optimized dense head</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Transfer Learning</h3>
+                    <p>Fine-tuned pretrained models with frozen feature extraction for maximum accuracy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Feature Maps</h3>
+                    <p>Visualize Conv2D activations for healthy vs diseased leaf comparisons</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Confusion Matrix</h3>
+                    <p>Detailed performance metrics and class-wise accuracy analysis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Real-time Detection</h3>
+                    <p>Instant predictions with confidence scores on unseen images</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CLASSIFIER SECTION ========== -->
+    <section id="classifier" class="classifier">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Disease Classifier</h2>
+                <p class="section-subtitle">Upload plant leaf images for AI-powered disease detection</p>
+            </div>
+
+            <!-- Upload Area -->
+            <div class="upload-section">
+                <div class="upload-container">
+                    <input type="file" id="imageUpload" accept="image/*" multiple hidden>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>Drag & Drop Images Here</h3>
+                        <p>or click to browse</p>
+                        <span class="upload-hint">Supports: JPG, PNG, JPEG (Max 10MB per file)</span>
+                        <button class="btn btn-upload" onclick="document.getElementById('imageUpload').click()">
+                            <i class="fas fa-folder-open"></i>
+                            Browse Files
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Processing Options -->
+                <div class="processing-options">
+                    <h4><i class="fas fa-cog"></i> Processing Options</h4>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="checkbox" id="showFilters" checked>
+                            <div class="option-content">
+                                <i class="fas fa-filter"></i>
+                                <span>Show Filter Response</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="checkbox" id="showFeatureMaps" checked>
+                            <div class="option-content">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Feature Maps</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="checkbox" id="showConfidence" checked>
+                            <div class="option-content">
+                                <i class="fas fa-percentage"></i>
+                                <span>Confidence Score</span>
+                            </div>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary btn-process" id="processBtn" disabled>
+                        <i class="fas fa-play"></i>
+                        Process Images
+                    </button>
+                </div>
+            </div>
+
+            <!-- Image Preview Grid -->
+            <div class="preview-section" id="previewSection" style="display: none;">
+                <h3><i class="fas fa-images"></i> Uploaded Images (<span id="imageCount">0</span>)</h3>
+                <div class="preview-grid" id="previewGrid"></div>
+            </div>
+
+            <!-- Loading Animation -->
+            <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <h3>Analyzing Images...</h3>
+                    <p id="loadingText">Preprocessing and feature extraction in progress</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RESULTS SECTION ========== -->
+    <section id="results" class="results" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Classification Results</h2>
+                <p class="section-subtitle">AI-powered disease detection with detailed analysis</p>
+            </div>
+
+            <!-- Results Grid -->
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be dynamically inserted here -->
+            </div>
+
+            <!-- Filter Visualization -->
+            <div class="filter-visualization">
+                <h3><i class="fas fa-filter"></i> Filter Response Analysis</h3>
+                <div class="filter-grid" id="filterGrid">
+                    <!-- Filter visualizations will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="results-actions">
+                <button class="btn btn-primary" onclick="downloadAllResults()">
+                    <i class="fas fa-download"></i>
+                    Download All Results
+                </button>
+                <button class="btn btn-secondary" onclick="resetClassifier()">
+                    <i class="fas fa-redo"></i>
+                    Analyze New Images
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MODEL COMPARISON SECTION ========== -->
+    <section id="models" class="models">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Model Architecture & Training</h2>
+                <p class="section-subtitle">Performance analysis of the Transfer Learning pipeline</p>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Training Phase</th>
+                            <th>Trainable Params</th>
+                            <th>Accuracy</th>
+                            <th>Phase Time</th>
+                            <th>Inference Speed</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="model-name">
+                                    <i class="fas fa-lock"></i>
+                                    Phase 1: Feature Extraction
+                                    <span class="status-badge" style="font-size: 0.7em; margin-left: 8px;">Base Frozen</span>
+                                </div>
+                            </td>
+                            <td>166K</td>
+                            <td><span class="accuracy-badge">89.03%</span></td>
+                            <td>7 min</td>
+                            <td>25ms</td>
+                            <td><span class="status-badge status-success">Completed</span></td>
+                        </tr>
+                        <tr class="best-model">
+                            <td>
+                                <div class="model-name">
+                                    <i class="fas fa-unlock"></i>
+                                    Phase 2: Fine-Tuning
+                                    <span class="best-tag">FINAL</span>
+                                </div>
+                            </td>
+                            <td>2.42M</td>
+                            <td><span class="accuracy-badge best">91.82%</span></td>
+                            <td>4 min</td>
+                            <td>25ms</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h4>Training & Validation Accuracy</h4>
+                    <div class="chart-scroll-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%;">
+                        <div style="position: relative; width: 100%; min-width: 450px;">
+                            <canvas id="accuracyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h4>Training Phase Comparison</h4>
+                    <div class="chart-scroll-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%;">
+                        <div style="position: relative; width: 100%; min-width: 400px;">
+                            <canvas id="comparisonChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confusion Matrix -->
+            <div class="confusion-matrix-section">
+                <h3><i class="fas fa-table"></i> Confusion Matrix - Best Model</h3>
+                <div class="matrix-container" id="confusionMatrix">
+                    <canvas id="matrixCanvas"></canvas>
+                </div>
+                <div class="matrix-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #10b981;"></div>
+                        <span>Correct Prediction</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #fca5a5;"></div>
+                        <span>Misclassification</span>
+                    </div>
+                    <div class="legend-item" style="font-size: 0.9em; color: #64748b; margin-left: 15px;">
+                        <span><i class="fas fa-info-circle"></i> Rows: Actual | Cols: Predicted</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About This Project</h2>
+                    <p>
+                        This end-to-end plant disease classification system leverages state-of-the-art deep learning 
+                        to identify 15 disease classes across multiple crop species using the PlantVillage Dataset.
+                    </p>
+                    <div class="tech-stack">
+                        <h4>Technology Stack</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-tag"><i class="fas fa-brain"></i> TensorFlow</span>
+                            <span class="tech-tag"><i class="fas fa-image"></i> OpenCV</span>
+                            <span class="tech-tag"><i class="fas fa-chart-bar"></i> NumPy</span>
+                            <span class="tech-tag"><i class="fab fa-html5"></i> HTML5</span>
+                            <span class="tech-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                            <span class="tech-tag"><i class="fab fa-js"></i> JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Manual Sobel & Laplacian filter implementation</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Data augmentation with TensorFlow pipeline</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Conv2D feature map visualization</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>ReduceLROnPlateau learning rate scheduling</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Batch normalization & dropout regularization</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Real-time inference on unseen images</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-leaf"></i>
+                    <span>PlantGuard AI</span>
+                </div>
+                <p>&copy; 2026 Plant Disease Classifier. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js?v=4"></script>
+    <script src="js/charts.js?v=4"></script>
+</body>
+</html>
